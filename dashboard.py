@@ -22,7 +22,6 @@ from PIL import Image
 url_pred = "https://loan-scoring-api2.herokuapp.com/"
 
 st.title("Pret a dépenser - Loan Prediction")
-st.sidebar.image('models/logo.png', width = 200)
 st.subheader("Predict your loan eligibility")
 st.markdown("\n")
 st.markdown("""---""")
