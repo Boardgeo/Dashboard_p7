@@ -33,9 +33,12 @@ df_pred = pickle.load(open("models/result_pred.p", "rb"))
 df_text = df_pred.drop(['proba', 'prediction'], axis = 1)
 
 # import shap values of the transformed data
-shap_values = pickle.load(open("models/shap_values_G.p", "rb"))
+model = pickle.load(open("models/Tuned_LGBM_50N.p", "rb"))
 Text_encode = pickle.load(open("models/Encoded_shap_ID.p", "rb"))
-shap_values2 = pickle.load(open("models/shap_values_L.p", "rb"))
+explainer = pickle.load(open("models/explainer_G.p", "rb"))
+shap_values = explainer.shap_values(Text_encode.drop("SK_ID_CURR", axis = 1), check_additivity=False)
+explainer1 = pickle.load(open("models/explainer_L.p", "rb"))
+shap_values2 = explainer1(Text_encode.drop("SK_ID_CURR", axis = 1), check_additivity=False)
 
 url_pred = "https://loan-scoring-api2.herokuapp.com/"
 #response = requests.get(url_pred)
